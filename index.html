@@ -1,0 +1,39 @@
+<html>
+  <script>
+    var reverseList = function (head) {
+      debugger;
+      if (!head) {
+        return head;
+      }
+      let current = head;
+      let previous;
+      let newNext = null; //?
+
+      while (current !== null) {
+        // cn = 1              2, -> 3, 4, 5]      3, ->       4   5
+        previous = current.next; // [2, 3, 4, 5]        3, 4, 5]            4, 5        5   null
+        current.next = newNext; //null                 1 -> from line 23   2           3   4
+        newNext = current; // 1                   2                   3           4   5   unshift
+        current = previous; // [2, 3, 4, 5]        3, 4, 5             4, 5        5   null
+      }
+      return newNext;
+    };
+    const node3 = {
+      value: 1,
+      next: null,
+    };
+    const node2 = {
+      value: 10,
+      next: node3,
+    };
+    const node1 = {
+      value: 5,
+      next: node2,
+    };
+
+    reverseList(node1);
+    // head.val = 1  <- save as prev   how to access this if it's reassigned at third step?
+    // head.next = 2  <- reassign as current. head.val = 2  <- save again?
+    //
+  </script>
+</html>
